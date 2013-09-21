@@ -93,16 +93,9 @@
                     <tbody>
                         <tr id="inputs">
                             <td><button id="add_contact" data-toggle="tooltip" title="Save contact">+</button></td>
-                            <td><input type="text" name="fullname"></td>
+                            <td><input type="text" name="name"></td>
                             <td><input type="text" name="number"></td>
                             <td><input type="text" name="username"></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Juan Cruz</td>
-                            <td>163</td>
-                            <td>jcruz</td>
-                            <td class="controls"><a href="#" class="edit">Edit</a> | <a href="#" class="delete">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -110,15 +103,14 @@
         </div>
     </body>
     <script type="text/template" id="contact_template">
-        <td><%= position %></td>
+        <td></td>
         <td><%= name %></td>
         <td><%= number %></td>
         <td><%= username %></td>
         <td class="controls"><a href="#" class="edit">Edit</a> | <a href="#" class="delete">Delete</a></td>
     </script>
     <script type="text/template" id="edit_mode_template">
-        <td><%= position %></td>
-        <td><input type="text" name="fullname" value="<%= name %>"></td>
+        <td><input type="text" name="name" value="<%= name %>"></td>
         <td><input type="text" name="number" value="<%= number %>"></td>
         <td><input type="text" name="username" value="<%= username %>"></td>
         <td class="confirmation"><span class="done">Done</span><span class="cancel">Cancel</span></td>
