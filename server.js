@@ -41,7 +41,8 @@ var corsSettings = function(req, res, next) {
 	res.header('Access-Control-Allow-Headers', 'origin, content-type, accept');
 	// deal with OPTIONS method during a preflight request
 	if (req.method === 'OPTIONS') {
-		res.send(200);
+		res.statusCode=200;
+		res.end();
 	} else {
 		next();
 	}
@@ -53,9 +54,9 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(corsSettings);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, '.')));
-  app.use(corsSettings);
 });
 
 
