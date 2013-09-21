@@ -65,7 +65,8 @@
         },
 
         validate: function(attrs) {
-            if (!attrs.name) {
+            if (!attrs.name || !attrs.number || !attrs.username ) {
+                alert("missing field");
                 return 'A name is required';
             }
         }
