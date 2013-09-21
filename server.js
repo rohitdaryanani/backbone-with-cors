@@ -12,11 +12,7 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 //var options = require('./creds');
 mongoose.connect('mongodb://localhost:27017/test');
 
-// var ContactSchema = new mongoose.Schema({
-// 	name: String,
-// 	number: String,
-// 	username: String
-// });
+
 var ContactSchema = mongoose.Schema({
 		name: {
 			type: String,

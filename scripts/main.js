@@ -116,19 +116,6 @@
             return this;
         },
 
-        //     updateContact: function() {
-        //         this.model.set('name', $(this.el).find('input[name=name]').val());
-        //         this.model.set('number', $(this.el).find('input[name=number]').val());
-        //         this.model.set('username', $(this.el).find('input[name=username]').val());
-        //         this.model.sync('update', this.model, {
-        //             success: function(err, result) {
-        //                 if (result === 'success') {
-        //                     this.render();
-        //                 }
-        //             }
-        //         });
-        //     }
-
         updateContact: function() {
             this.model.save({
                 name: $(this.el).find('input[name=name]').val(),
