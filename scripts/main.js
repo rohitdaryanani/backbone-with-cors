@@ -14,6 +14,7 @@
             this.contacts_list = $('.table tbody');
             this.listenTo(this.collection, 'add', function(model) {
                 console.log(model);
+                var self = this;
 
                 if (model.get('_id')) {
                     var view = new PersonView({
@@ -23,24 +24,14 @@
                 } else {
                     this.collection.sync('create', model, {
                         success: function(s) {
-                            console.log('Success');
+                            console.log(s);
 
                             model.set('_id', s._id);
                             var view = new PersonView({
                                 model: model
                             });
+                            self.contacts_list.append(view.render().el);
                         },
-                        error: function(e) {
-                            if (e) {
-                                if (e.responseJSON.err) {
-                                    alert('Duplicate Username');
-                                }
-
-                                if (e.responseJSON.errors) {
-                                    alert('Contact Number should only contain numbers');
-                                }
-                            }
-                        }
                     });
                 }
             });
@@ -54,13 +45,11 @@
             });
 
             this.collection.add(person);
-            //person.save();
 
-            var view = new PersonView({
-                model: person
-            });
-            this.contacts_list.append(view.render().el);
-            //this.clearForm();
+            // var view = new PersonView({
+            //     model: person
+            // });
+            // this.contacts_list.append(view.render().el);
         }
     });
 
@@ -73,6 +62,12 @@
         idAttribute: '_id',
         initialize: function() {
 
+        },
+
+        validate: function(attrs) {
+            if (!attrs.name) {
+                return 'A name is required';
+            }
         }
     });
 
@@ -96,7 +91,7 @@
         },
 
         initialize: function() {
-            //this.model.on('change', this.render, this);
+            this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
         },
 
@@ -140,7 +135,7 @@
                 number: $(this.el).find('input[name=number]').val(),
                 username: $(this.el).find('input[name=username]').val()
             });
-            this.render();
+            //this.render();
         }
     });
 
